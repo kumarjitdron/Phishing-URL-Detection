@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This website is developed to identify the safety of URLs.">
+    <meta name="keywords" content="phishing url, phishing, cyber security, machine learning, classifier, python">
+    <meta name="author" content="VAIBHAV BICHAVE">
+
+    <!-- BootStrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        
+    <link href="static/styles.css" rel="stylesheet">
+    <title>URL Detection</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="form col-md" id="form1">
+                <h2>PHISHING URL DETECTION</h2>
+                <br>
+                <form action="/" method="post">
+                    <input type="text" class="form__input" name="url" id="url" placeholder="Enter URL" required="" />
+                    <label for="url" class="form__label">URL</label>
+                    <button class="button" role="button">Check here</button>
+                </form>
+            </div>
+
+            <div class="col-md" id="form2" style="display: none;">
+                <br>
+                <h6 class="right"><a href="{{ url }}" target="_blank">{{ url }}</a></h6>
+                <br>
+                <h3 id="prediction">{{ prediction }}</h3>  <!-- Display the prediction here -->
+                <button class="button2" id="button2" style="display: none;" role="button" onclick="window.open('{{ url }}')" target="_blank">Still want to Continue</button>
+                <button class="button1" id="button1" style="display: none;" role="button" onclick="window.open('{{ url }}')" target="_blank">Continue</button>
+            </div> 
+        </div>
+        <br>
+        <p>©2024 Group-04</p>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let predictionText = "{{ prediction }}";  // Get prediction from the Flask variable
+
+            if (predictionText) {
+                document.getElementById("form2").style.display = "block";  // Show the second form
+                document.getElementById("prediction").innerHTML = predictionText;  // Set prediction text
+                
+                // Show appropriate button based on prediction
+                if (predictionText.includes("Warning")) {
+                    document.getElementById("button2").style.display = "block";  // Show warning button
+                } else {
+                    document.getElementById("button1").style.display = "block";  // Show safe button
+                }
+            }
+        });
+    </script>
+</body>
+</html>

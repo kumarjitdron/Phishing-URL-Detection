@@ -1,9 +1,13 @@
 Flask==2.3.2
 gunicorn==21.2.0
-scikit-learn==1.2.2
-numpy==1.24.4
-pandas==2.0.3
-joblib==1.2.0
+
+# ML stack compatible with Py 3.13
+numpy==2.3.1
+scikit-learn==1.7.0
+pandas==2.3.0
+joblib==1.5.1
+
+# other deps
 python-dateutil==2.9.0.post0
 python-whois==0.9.5
 googlesearch-python==1.3
